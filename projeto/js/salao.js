@@ -1,4 +1,5 @@
 //let listaDeMesas = [{nome: "mesa"}, {nome: "mesa2"}, {nome: "mesa3"}]
+localStorage.mesaSelecionada = "";
 let listaDeMesas = new Array();
 let painelDeMesas = document.getElementById("mesas")
 
@@ -63,7 +64,12 @@ function criarCartao(mesaElement){
 
 function criarTexto(value){
     var div = document.createElement("div")
-    div.setAttribute("class", "card col-sm-9")
+    div.setAttribute("class", "card col-sm-9 btn btn-light")
+    div.setAttribute("type", "button")
+    div.onclick=function(){
+        localStorage.mesaSelecionada=div.children[0].innerHTML;
+        location.href="carrinhoCompra.html"
+    }
     var element = document.createElement("h3");
     element.setAttribute("class", "mt-3 text-dark card-title")
     element.innerText = value;

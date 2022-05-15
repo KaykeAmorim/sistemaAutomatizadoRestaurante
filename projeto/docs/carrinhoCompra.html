@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8" lang="pt-br">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-sm-md bg-dark navbar-dark">
+
+            <a class="navbar-brand" href="#">Home</a> 
+             
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <a class="nav-link" href="#"><li class="nav-item">Salão</li></a>
+                    <a class="nav-link" href="#"><li class="nav-item">Cozinha</li></a>
+                </ul>
+            </div>
+            
+        </nav>
+        <section class="container mt-5">
+            
+            <h1 id="tituloPagina"><b>Meu carrinho</b></h1>
+            <div class="text-center" style="display: none;">
+                <a href="produtos.html">Adicionar mais produtos</a>
+            </div>
+            <article class="mt-5">
+                <div id="carrinho" class="row">
+                    <div class="col-sm-9">
+                        <div id="produtosAdquiridos">
+                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h3 class="text-dark">Produtos</h3>
+                                </div>
+        
+                                <div class="col-sm-4">
+                                    <h3 class="text-dark">Qtd</h3>
+                                </div>
+        
+                                <div class="col-sm-4">
+                                    <h3 class="text-dark">Preço</h3>
+                                </div>
+                            </div><hr>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <form class="form-group p-3" style="border: 1px solid #ccc; border-radius: 12px">
+                            <fieldset>
+                                <div id="resumoCompra"></div>
+                                <div class="mt-5 text-white">
+                                    <button class="w-100 btn btn-danger">Continuar</button>
+                                </div>
+                                <div class="text-center">
+                                    <a href="produtos.html">Adicionar mais produtos</a>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </article>
+
+            <article>
+                <div id="produtos" class="row mt-5">
+
+                </div>
+            </article>
+        
+    </section>
+            
+        </section>
+        <footer class="bg-dark p-4 text-white text-center mt-4">
+            <p>&copy;2022 - Todos os direitos reservados</p>
+        </footer>
+    </body>
+    <script src="../js/carrinhoCompra.js"></script>
+</html>
