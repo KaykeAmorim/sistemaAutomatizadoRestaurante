@@ -1,6 +1,8 @@
-//let listaDeMesas = [{nome: "mesa"}, {nome: "mesa2"}, {nome: "mesa3"}]
 localStorage.mesaSelecionada = "";
 let listaDeMesas = new Array();
+if(localStorage.mesas != null){
+    listaDeMesas = JSON.parse(localStorage.mesas)
+}
 let painelDeMesas = document.getElementById("mesas")
 
 mostrarMesas(listaDeMesas);
@@ -10,8 +12,9 @@ function addMesa(){
     if(verificaSeVazio(nomeMesa.value));
     else if(verificaSeMesaExiste(nomeMesa.value));
     else{
-        var mesa = {nome: nomeMesa.value};
+        var mesa = {nome: nomeMesa.value, produto:new Array()};
         listaDeMesas.push(mesa)
+        localStorage.setItem("mesas", JSON.stringify(listaDeMesas))
         addMesaHTML(mesa);
     }
 }
@@ -95,4 +98,5 @@ function criarLixeira(){
 
 function removeMesaLista(value){
     listaDeMesas = listaDeMesas.filter(lista => lista.nome != value)
+    localStorage.setItem("mesas", JSON.stringify(listaDeMesas))
 }

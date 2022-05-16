@@ -5,8 +5,9 @@ for(var i = 0; i < 6; i++){
 function carregaCardapio(cardapio){
     var textoLorem = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum fugit cupiditate architecto aspernatur, distinctio commodi neque necessitatibus sunt! Iste placeat expedita nemo iure sint debitis! Labore animi eveniet sequi voluptate."
     var divProduto = configuraElemento(criaDiv(), "col-sm-6 mt-5", cardapio)
-    var titulo = configuraElemento(criaTexto("h3","The Best Burguer"), "text-dark", divProduto)
-    var divDetalhes = configuraElemento(criaDiv(), "row", divProduto)
+    var link = configuraElemento(criarLink("singleProduto.html"),"text-left btn btn-light", divProduto)
+    var titulo = configuraElemento(criaTexto("h3","The Best Burguer"), "text-dark", link)
+    var divDetalhes = configuraElemento(criaDiv(), "row", link)
     var divImagem = configuraElemento(criaDiv(), "col-sm-4", divDetalhes)
     var imagem = configuraElemento(criaImg("../imagens/the-best-burguer.png"), "w-100", divImagem)
     var divDescricao = configuraElemento(criaDiv(), "col-sm-8", divDetalhes)
@@ -38,4 +39,10 @@ function criaImg(caminho){
     var element = document.createElement("img")
     element.setAttribute("src", caminho);
     return element;
+}
+
+function criarLink(caminho){
+    var element = document.createElement("a")
+    element.setAttribute("href", caminho)
+    return element
 }

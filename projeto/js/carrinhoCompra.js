@@ -1,10 +1,13 @@
-if(localStorage.produtosNoCarrinho!=null)
-{
-    let produtosJSON = JSON.parse(localStorage.produtosNoCarrinho);
-    carregaProdutosNoLayout(produtosJSON)
-    carregaResumoNoLayout(produtosJSON)
-    carregaTitulosRelacionados(produtosJSON);
-}
+let mesaSelecionada = localStorage.mesaSelecionada;
+let listaDeMesas = new Array();
+listaDeMesas = JSON.parse(localStorage.mesas)
+let produtosNoCarrinho = listaDeMesas.filter(lista => lista.nome == mesaSelecionada)
+
+ if(produtosNoCarrinho[0].produto.length)
+ {
+    carregaProdutosNoLayout(produtosNoCarrinho[0].produto)
+    carregaResumoNoLayout(produtosNoCarrinho[0].produto)
+ }
 
 
 // ========================== Funções Auxiliares ==========================//
@@ -33,7 +36,9 @@ function carregaProdutosNoLayout(produtos){
     btnEsvaziar.innerHTML= "Excluir Itens"
     btnEsvaziar.setAttribute("type", "button");
     btnEsvaziar.onclick = function(){
-        localStorage.removeItem("produtosNoCarrinho")
+        var index = listaDeMesas.findIndex(lista => lista.nome == mesaSelecionada)
+        listaDeMesas[index].produto = new Array();
+        localStorage.setItem("mesas", JSON.stringify(listaDeMesas))
         location.href="carrinhoCompra.html";
     }
 
@@ -125,16 +130,4 @@ function carregaResumoNoLayout(produtos){
     var paragrafo = totalProdutos + " Produtos<br>"+"Total R$ "+(totalCompra.toFixed(2)).toString().replace(".",",");
     paragrafoResumoJSON.element = criarTexto(paragrafo,"p");
     configuraElemento(paragrafoResumoJSON, divResumo)
-}
-
-function carregaTitulosRelacionados(produtos){
-    var titulosRelacionados = getElementJSON();
-    titulosRelacionados.element = document.querySelector("#produtos")
-    for(var i = 0; i < produtos.length; i++){
-        var divImg = configuraElemento(criarDivJSON("col-sm-4"), titulosRelacionados)
-        var imagem = getElementJSON();
-        imagem.element = criarImg(produtos[i].img);
-        imagem.class = "w-100"
-        imagem = configuraElemento(imagem, divImg)
-    }
 }
