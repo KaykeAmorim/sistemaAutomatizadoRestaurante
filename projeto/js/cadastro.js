@@ -21,6 +21,7 @@ btnCadastrar.onclick=function(){
             }
         }
         document.querySelector("#mensagemNomeImagem").value = nomeImagem + ".png"
+        document.querySelector("#inputCategoria").value = formC.categoria.value
         formC.submit();
     }
 }

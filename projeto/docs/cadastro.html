@@ -35,17 +35,38 @@
                         <label class="text-dark">Nome :</label>
                         <input class="form-control" id="nomeProduto" name="entry.2084337515">
                     </div>
-                    <div class="mt-2">
-                        <label class="text-dark">Descrição :</label>
-                        <textarea class="form-control" rows="8" id="descricaoProduto" name="entry.1202198144"></textarea>
-                    </div>
+
                     <div class="mt-2">
                         <label class="text-dark">Preço :</label>
                         <input class="form-control" id="precoProduto" placeholder="R$ 00.00" name="entry.442020263">
                     </div>
+
+                    <div>
+                        <label >Selecione a Categoria:</label>
+                        <select class="form-control" id="categoria">
+                            <option>Hamburguer</option> 
+                            <option>Pizza</option>            
+                            <option>Comida Mineira</option>
+                            <option>Comida Mexicana</option>            
+                            <option>Petisco Caiçara</option>            
+                            <option>Drink</option>            
+                            <option>Suco</option>            
+                            <option>Refrigerante</option>            
+                            <option>Caldo</option>            
+                            <option>Sobremesas</option>                   
+                        </select>
+                        <input id="inputCategoria"name="entry.2083978467" style="display: none;"/>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="text-dark">Descrição :</label>
+                        <textarea class="form-control" rows="8" id="descricaoProduto" name="entry.1202198144"></textarea>
+                    </div>
+
                     <div class="text-center">
                         <input id="mensagemNomeImagem" name="entry.1789729341" style="display: none;">
                      </div>
+
                      <div class="mt-3 text-center">
                         <button id="btnCadastro" type="button" class="btn btn-info w-50">Cadastrar</button>
                      </div>
