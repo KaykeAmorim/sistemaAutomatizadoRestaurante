@@ -8,9 +8,10 @@ function carregaCardapio(cardapio){
     var titulo = configuraElemento(criaTexto("h3","The Best Burguer"), "text-dark", divProduto)
     var divDetalhes = configuraElemento(criaDiv(), "row", divProduto)
     var divImagem = configuraElemento(criaDiv(), "col-sm-4", divDetalhes)
-    var imagem = configuraElemento(criaImg("imagens/the-best-burguer.png"), "w-100", divImagem)
+    var imagem = configuraElemento(criaImg("../imagens/the-best-burguer.png"), "w-100", divImagem)
     var divDescricao = configuraElemento(criaDiv(), "col-sm-8", divDetalhes)
     var descricao = configuraElemento(criaTexto("p", textoLorem), "text-dark", divDescricao)
+    var preco = configuraElemento(criaTexto("h4", "R$ 30,50"), "text-success", divDescricao)
 }
 
 function pegaCardapio(id){

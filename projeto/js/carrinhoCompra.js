@@ -1,6 +1,6 @@
-let produtosJSON = JSON.parse(localStorage.produtosNoCarrinho);
-if(produtosJSON!=null)
+if(localStorage.produtosNoCarrinho!=null)
 {
+    let produtosJSON = JSON.parse(localStorage.produtosNoCarrinho);
     carregaProdutosNoLayout(produtosJSON)
     carregaResumoNoLayout(produtosJSON)
     carregaTitulosRelacionados(produtosJSON);
