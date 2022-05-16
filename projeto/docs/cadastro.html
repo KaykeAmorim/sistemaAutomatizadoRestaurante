@@ -30,36 +30,26 @@
 
         <section class="container mt-5">
             <article>
-               <div class="row mx-auto">
-                    <div class="col-sm-3 card p-3 mx-auto">
-                        <a href="docs/salao.html" class="btn">
-                            <img class="card-img-top w-100" src="imagens/salao-logo.png" alt="Card image">                
-                            <div class="card-body">
-                                <h2 class="card-title">Salão</h2>
-                            </div>
-                        </a>   
+               <form id="cadastro" class="form-group p-3 mx-auto w-50" style="border: 1px solid #ccc; border-radius: 12px;">
+                    <div class="mt-2">
+                        <label class="text-dark">Nome :</label>
+                        <input class="form-control" id="nomeProduto" name="nomeProduto">
                     </div>
-
-                    <div class="col-sm-3 card p-3 mx-auto">
-                        <a href="#" class="btn">
-                            <img class="card-img-top w-100" src="imagens/chapeu-cheff-logo.png" alt="Card image">                
-                            <div class="card-body">
-                                <h2 class="card-title">Cozinha</h2>
-                            </div>
-                        </a>   
+                    <div class="mt-2">
+                        <label class="text-dark">Descrição :</label>
+                        <textarea class="form-control" rows="8" id="descricaoProduto" name="descricaoProduto"></textarea>
                     </div>
-
-                    <div class="col-sm-3 card p-3 mx-auto">
-                        <a href="docs/cadastro.html" class="btn">
-                            <img class="card-img-top w-100" src="imagens/cadastro.png" alt="Card image">                
-                            <div class="card-body">
-                                <h2 class="card-title">Cadastro</h2>
-                            </div>
-                        </a>   
+                    <div class="mt-3 text-center">
+                       <button id="btnCadastro" type="button" class="btn btn-info w-50">Cadastrar</button>
                     </div>
-               </div>
+                    <div class="text-center">
+                        <p id="mensagemNomeImagem" class="text-success"></p>
+                     </div>
+               </form>
             </article>
         </section>
+
+        <script src="../js/cadastro.js"></script>
 
         <footer class="bg-dark text-center text-white p-4 mt-5">
             <p>&copy; Todos os Direitos Reservados</p>
