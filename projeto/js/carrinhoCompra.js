@@ -129,9 +129,11 @@ function carregaResumoNoLayout(produtos){
         totalCompra += parseFloat(produtos[i].qtd) * parseFloat(produtos[i].preco)
     }
 
+    var taxa = totalCompra*1.1;
+
     var divResumo = configuraElemento(criarDivJSON(""), resumoCompraJSON)
     var paragrafoResumoJSON = getElementJSON();
-    var paragrafo = totalProdutos + " Produtos<br>"+"Total R$ "+(totalCompra.toFixed(2)).toString().replace(".",",");
+    var paragrafo = totalProdutos + " Produtos<br>"+"Total R$ "+(totalCompra.toFixed(2)).toString().replace(".",",") + "<br/><strong> Total com Taxa R$ " + (taxa.toFixed(2)).toString().replace(".",",") + "</strong>";
     paragrafoResumoJSON.element = criarTexto(paragrafo,"p");
     configuraElemento(paragrafoResumoJSON, divResumo)
 }
