@@ -99,5 +99,17 @@ function criaImg(caminho){
 function criarLink(caminho){
     var element = document.createElement("a")
     element.setAttribute("href", caminho)
+    element.setAttribute("type","button")
+    element.onclick = function(){
+        var titulo = element.children[0].innerHTML
+        var imagem = (element.children[1].children[0].children[0].getAttribute("src"))
+        var descricao = element.children[1].children[1].children[0].innerHTML
+        var preco = element.children[1].children[1].children[1].innerHTML
+        preco = preco.split("R$ ")
+        preco = preco[1];
+        preco = Number(preco.replace(',','.'))
+        var produtoSelecionado = {titulo: titulo, imagem:imagem, descricao: descricao, preco:preco}
+        localStorage.setItem("produtoSelecionado", JSON.stringify(produtoSelecionado))
+    }
     return element
 }

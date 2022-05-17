@@ -3,16 +3,12 @@ var imagem = document.querySelector("#imagemProduto")
 var descricao = document.querySelector("#descricaoProduto")
 var elementoImagem = document.createElement("img");
 elementoImagem.setAttribute("class", "w-100")
-var textoLorem = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur ex optio quidem a nesciunt veritatis nemo sint. Est, aperiam? Neque, minus dolor nostrum facilis sunt in amet reprehenderit assumenda numquam suscipit deserunt, odio debitis dolore doloremque maxime voluptate inventore libero modi cum perspiciatis asperiores. Incidunt voluptate harum odio fugiat nemo!"
 
 let listaDeMesas = new Array();
 listaDeMesas = JSON.parse(localStorage.mesas)
 let mesaSelecionada = listaDeMesas.filter(lista => lista.nome == localStorage.mesaSelecionada)
 
-let produto = '{"titulo":"Nome Produto", "imagem":"../imagens/the-best-burguer.png","descricao":"Lorem aqui", "preco":30.50}'
-var produtoJSON = JSON.parse(produto)
-
-produtoJSON.descricao = textoLorem;
+var produtoJSON = JSON.parse(localStorage.produtoSelecionado)
 
 elementoImagem.setAttribute("src",produtoJSON.imagem)
 imagem.appendChild(elementoImagem)
