@@ -159,3 +159,7 @@ function configuraLixeira(index){
     elementJSON.class = "btn btn-light"
     return elementJSON
 }
+
+function enviarPedido(){
+    location.href = "envio.html"
+}

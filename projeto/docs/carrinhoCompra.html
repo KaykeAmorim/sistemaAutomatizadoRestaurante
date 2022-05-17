@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Home</title>
+        <title>Carrinho de Compras</title>
         <meta charset="utf-8" lang="pt-br">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
     <body>
         <nav class="navbar navbar-expand-sm-md bg-dark navbar-dark">
 
-            <a class="navbar-brand" href="#">Home</a> 
+            <a class="navbar-brand" href="../index.html">Home</a> 
              
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -20,8 +20,8 @@
 
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
-                    <a class="nav-link" href="#"><li class="nav-item">Salão</li></a>
-                    <a class="nav-link" href="#"><li class="nav-item">Cozinha</li></a>
+                    <a class="nav-link" href="salao.html"><li class="nav-item">Salão</li></a>
+                    <a class="nav-link" href="cozinha.html"><li class="nav-item">Cozinha</li></a>
                 </ul>
             </div>
             
@@ -56,7 +56,7 @@
                             <fieldset>
                                 <div id="resumoCompra"></div>
                                 <div class="mt-5 text-white">
-                                    <button class="w-100 btn btn-danger">Continuar</button>
+                                    <button onclick="enviarPedido()" type="button" class="w-100 btn btn-danger">Continuar</button>
                                 </div>
                                 <div class="text-center">
                                     <a href="cardapio.html">Adicionar mais produtos</a>

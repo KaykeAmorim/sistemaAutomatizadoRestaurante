@@ -45,7 +45,7 @@ function confereSeMenorQueUm(value){
 
 function addProduto(value){
     var listaProdutos = getLista(mesaSelecionada[0].produto)
-    listaProdutos.push({img:produtoJSON.imagem, qtd: value, preco: produtoJSON.preco});
+    listaProdutos.push({titulo:produtoJSON.titulo,img:produtoJSON.imagem, qtd: value, preco: produtoJSON.preco});
     mesaSelecionada[0].produto = listaProdutos;
     var index = listaDeMesas.findIndex(lista => lista.nome == mesaSelecionada[0].nome)
     listaDeMesas[index].produto = mesaSelecionada[0].produto;
@@ -54,7 +54,7 @@ function addProduto(value){
 }
 
 function getProdutoJSON(){
-    var produtoJSON = {img:"", qtd:"", preco:""}
+    var produtoJSON = {titulo:"",img:"", qtd:"", preco:""}
     return produtoJSON;
 }
 
