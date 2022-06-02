@@ -1,0 +1,11 @@
+{
+  "name": "bistro",
+  "version": "1.0.0",
+  "description": "Projeto para automatizar sistema de pedidos de um bistro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kayke Amorim Tavares Martins",
+  "license": "ISC"
+}
