@@ -1,4 +1,5 @@
 const cpf = document.querySelector("#cpf");
+const senha = document.querySelector("#senha");
 
 cpf.addEventListener("blur", () => {
     let value = cpf.value.replace(/[^0-9]/g, "").replace(/^([\d]{3})([\d]{3})?([\d]{3})?([\d]{2})?/, "$1.$2.$3-$4");
