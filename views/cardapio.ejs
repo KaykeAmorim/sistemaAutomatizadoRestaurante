@@ -32,57 +32,25 @@
             <article>
                 <h1 class="text-center text-dark mt-4">Cardápio</h1><hr>
                 <ul class="mt-5">
-                    <li><h2>Hamburguer</h2></li>
-                        <div id="cardapioHamburguer" class="row">
 
-                        </div>
-
-                    <li><h2>Pizza</h2></li>
-                        <div id="cardapioPizza" class="row">
-
-                        </div>
-
-                    <li><h2>Comida Mineira</h2></li>
-                        <div id="cardapioComidaMineira" class="row">
-
-                        </div>
-
-                    <li><h2>Comida Mexicana</h2></li>
-                        <div id="cardapioComidaMexicana" class="row">
-
-                        </div>
-
-                    <li><h2>Petisco Caiçara</h2></li>
-                        <div id="cardapioPetiscoCaicara" class="row">
-
-                        </div>
-
-                    <li><h2>Drink</h2></li>
-                        <div id="cardapioDrink" class="row">
-
-                        </div>
-
-                    <li><h2>Suco</h2></li>
-                        <div id="cardapioSuco" class="row">
-
-                        </div>
-
-                    <li><h2>Refrigerante</h2></li>
-                        <div id="cardapioRefrigerante" class="row">
-
-                        </div>
-
-                    <li><h2>Caldo</h2></li>
-                        <div id="cardapioCaldo" class="row">
-
-                        </div>
-
-                    <li><h2>Sobremesas</h2></li>
-                        <div id="cardapioSobremesas" class="row">
-
-                        </div>
-                </ul>
-                <span id="link" style="display: none;"><%=caminho-%></span>
+                    <%produtos.forEach((produto) => {%>
+                        <div id="cardapio" class="row mb-3">
+                            <a class="btn btn-light text-left p-4" href="/produto/<%=ID%>/<%=produto.produto_id%>">
+                                <h2 class="mb-3 text-center"><%=produto.nome%></h2>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <img class="w-100" id="imagem" src="data:image/png;base64,<%=produto.imagem%>">
+                                        <span style="display: none;" id="imagemBlob"></span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <p class="text-dark"><%=produto.descricao%></p>
+                                        <h4 class="text-success">R$ <%=produto.preco%></h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>                        
+                    <%})%>
+                <span id="link" style="display: none;"></span>
             </article>
         </section>
 
@@ -90,6 +58,5 @@
             <p>&copy; Todos os Direitos Reservados</p>
         </footer>
     </body>
-
-    <script src="../js/cardapio.js"></script>
+    <script src="/js/cardapio.js"></script>
 </html>

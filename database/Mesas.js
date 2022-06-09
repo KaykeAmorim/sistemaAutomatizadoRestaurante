@@ -16,7 +16,7 @@ const Mesas = connection.define('Mesas',{
         type: Sequelize.INTEGER
     },
     pedido:{
-        type: Sequelize.INTEGER
+        type: Sequelize.JSON
     }
 })
 

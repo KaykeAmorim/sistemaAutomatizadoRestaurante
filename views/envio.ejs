@@ -29,25 +29,17 @@
         </nav>
 
         <section class="container mt-5">
-            <form target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSelOxVU43zRgRP0RVBz7jymdpWXFEfh4YiPAiL_80V4BMHyDA/formResponse" id="formEnvio" class="form-group w-50 mx-auto p-3" style="border: 1px solid #ccc; border-radius: 12px">
+            <form method="post" action="/enviarPedido/<%=ID%>" id="formEnvio" class="form-group w-50 mx-auto p-3" style="border: 1px solid #ccc; border-radius: 12px">
                 <div class="text-center mx-auto">
                     <img class="w-50" src="../imagens/comanda.png">
                 </div>
-
-                <div style="display: none;">
-                    <input style="display: none;" name="entry.827820323" id="idProduto" >
-                </div>
-
-                <div class="mx-auto mb-3 text-center">
-                    <input name="entry.1215343007" id="mesa" class="text-dark form-control">
-                </div>
-
+                
                 <div class="mx-auto mb-3">
-                    <textarea name="entry.2140611702" id="produtos" class="form-control" row="15"></textarea>
+                    <textarea name="observacao" id="observacao" class="form-control" row="15"></textarea>
                 </div>
 
                 <div style="display: none;">
-                    <input style="display: none;" name="entry.1273890277" id="status" >
+                    <textarea name="pedido" id="pedido" class="form-control"></textarea>
                 </div>
 
                 <div class="text-center">
