@@ -8,16 +8,13 @@ const Mesas = connection.define('Mesas',{
         primaryKey:true,
         allowNull:false
     },
-    nome:{
+    mesa_nome:{
         type: Sequelize.STRING,
         allowNull: false
     },
     usuario:{
         type: Sequelize.INTEGER
     },
-    pedido:{
-        type: Sequelize.JSON
-    }
 })
 
 Mesas.sync({force:false}).then(()=>{})

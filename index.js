@@ -61,7 +61,7 @@ app.post("/validar/:nomeMesa",function(req,res){
     }).then((usuario)=>{
         if(usuario.length){
             if(Senha == usuario[0].senha){
-                Mesas.update({usuario: usuario[0].usuario_id},{where: { nome: req.params.nomeMesa}}).then(()=>{
+                Mesas.update({usuario: usuario[0].usuario_id},{where: { meesa_nome: req.params.nomeMesa}}).then(()=>{
                     Mesas.findAll({
                         raw:true,
                         attributes: ['mesa_id'],
@@ -69,7 +69,6 @@ app.post("/validar/:nomeMesa",function(req,res){
                             nome:req.params.nomeMesa
                         }
                     }).then((mesaID)=>{
-                        console.log(mesaID[0].meda_id)
                         res.redirect(`/carrinho/${mesaID[0].mesa_id}`)
                     })
                 })
@@ -195,7 +194,8 @@ app.post('/addProdutoCarrinho/:ID/:produto',function(req, res){
         produto: produto,
         quantidade: quantidade,
         mesa: ID,
-        confirmado: false
+        confirmado: false,
+        status: false
     }).then(()=>{
         res.redirect(`/carrinho/${ID}`)
     })
@@ -233,6 +233,26 @@ app.get('/limparMesa/:ID', function(req, res){
     })
 })
 
+app.post('/adm/addMesa', function(req,res){
+    const nome = req.body.nomeMesa
+    Mesas.create({
+        mesa_nome: nome
+    }).then(()=>{
+        res.redirect('/adm/salao')
+    })
+})
+
+app.get('/adm/cozinha', async(req,res) => {
+    let result = await getPedidos();
+    res.render('cozinha',{pedidos:result})
+})
+
+app.get('/pedidoPronto/:ID', function(req, res){
+    Pedidos.update({status:true},{where:{pedido_id:req.params.ID}}).then(()=>{
+        res.redirect('/adm/cozinha')
+    })
+})
+
 app.listen(port, () => console.log("Servidor iniciado com sucesso !"))
 
 async function getCardapio(){
@@ -252,5 +272,10 @@ function ultimoArquivoModificado(dir){
 
 async function getCarrinho(ID){
     const [result, metadata] = await connection.query(`SELECT Produtos.imagem,Pedidos.confirmado,Produtos.preco, Pedidos.quantidade, Pedidos.pedido_id FROM Produtos INNER JOIN Pedidos ON Pedidos.produto = Produtos.produto_id AND Pedidos.mesa=${ID}`)
+    return result
+}
+
+async function getPedidos(){
+    const [result, metadata] = await connection.query(`SELECT Produtos.nome,Pedidos.pedido_id,Pedidos.quantidade, Mesas.mesa_nome FROM Produtos INNER JOIN Pedidos ON Pedidos.produto = Produtos.produto_id INNER JOIN Mesas ON Pedidos.mesa = Mesas.mesa_id WHERE Pedidos.confirmado=${true} AND Pedidos.status=${false} ORDER BY Pedidos.pedido_id ASC`)
     return result
 }

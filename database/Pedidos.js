@@ -23,6 +23,10 @@ const Pedidos = connection.define('Pedidos', {
     confirmado:{
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+    status:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false
     }
 })
 

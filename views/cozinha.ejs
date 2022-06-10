@@ -11,9 +11,9 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-sm-md bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-sm-md bg-primary navbar-primary">
 
-            <a class="navbar-brand" href="../index.html">Home</a> 
+            <a class="navbar-brand text-light" href="../index.html">Home</a> 
              
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -29,10 +29,14 @@
         </nav>
 
         <section class="container mt-5">
-            <div id="pedidos" class="row"></div>
+            <%pedidos.forEach(pedido =>{%>
+                <div class="card mt-3 w-75 mx-auto">
+                    <div class="card-title p-3 text-center bg-primary text-light"><h2><%=pedido.mesa_nome%></h2></div>
+                    <div class="card-body text-center"><h3><%=pedido.quantidade%> <%=pedido.nome%></h3></div>
+                    <div class="card-footer text-center"><a href="/pedidoPronto/<%=pedido.pedido_id%>" class="btn btn-danger w-50">Finalizar</a></div>
+                </div>
+            <%})%>
         </section>
         
     </body>
-
-    <script src="../js/cozinha.js"></script>
 </html>

@@ -33,19 +33,19 @@
                 
                 <%mesas.forEach(mesa => {%>
                     <div class="card w-75 mx-auto p-3 mb-3">
-                        <div class="card-title text-center"><h2><%=mesa.nome%></h2></div>
+                        <div class="card-title text-center"><h2><%=mesa.mesa_nome%></h2></div>
                         <div class="card-footer text-center"><a class="btn btn-info w-75" href="/adm/mesa/<%=mesa.mesa_id%>">Visualizar</a></div>
                     </div>
                 <%})%>
 
-                <form id="addMesa" class="form-group w-50 mx-auto mt-5 p-3">
+                <form action="/adm/addMesa" method="post" id="addMesa" class="form-group w-50 mx-auto mt-5 p-3">
                     <fieldset>
                          <div class="row mt-3">
                              <div class="col-sm-9 w-100">
-                                 <input id="nomeMesa" type="text" placeholder="Nome" class="form-control">
+                                 <input id="nomeMesa" name="nomeMesa" type="text" placeholder="Nome" class="form-control">
                              </div>
                              <div class="col-sm-3">
-                                 <button class="btn btn-danger w-100" type="button">Adicionar</button>
+                                 <button class="btn btn-danger w-100" type="submit">Adicionar</button>
                              </div>
                          </div>
                     </fieldset>
