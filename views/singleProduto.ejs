@@ -32,34 +32,28 @@
 
         <section class="container">
             <div class="mt-5">
-                <h2 id="nomeProduto"></h2>
+                <h2 id="nomeProduto"><%=produto.nome%></h2>
                 <div class="row mt-5">
                     <div id="imagemProduto" class="col-sm-4">
-                        
+                        <img class="w-75" src="data:image/png;base64,<%=produto.imagem%>">
                     </div>
                     <div class="col-sm-8">
-                        <p id="descricaoProduto" class="text-dark"></p>
+                        <p id="descricaoProduto" class="text-dark"><%=produto.descricao%></p>
                         <div class="align-items-end row">
-                            <div class="col-sm-3">
-                                <input id="quantidade" min="0" class="form-control" type="number">
-                            </div>
-
-                            <div class="col-sm-9">
-                                <button onclick="btnClick()" id="btnAdd" class=" w-100 btn btn-danger" type="button">Adicionar ao Carrinho</button>
-                            </div>
+                            <form class="row form-group mx-auto w-75" action="/addProdutoCarrinho/<%=ID%>/<%=produto.produto_id%>" method="post">
+                                <div class="col-sm-3">
+                                    <input id="quantidade" name="quantidade" min="1" value="1" class="form-control" type="number">
+                                </div>
+                                <div class="col-sm-9">
+                                    <button class="w-100 btn btn-danger" type="submit">Adicionar ao Carrinho</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>      
         </section>
 
-        <span id="link" style="display: none;"><%=link%></span>
-
-        <footer class="bg-dark text-center text-white p-4 mt-4">
-            <hr/>
-                <p>&copy;2022 Todos os Direitos Reservados</p>
-        </footer>
     </body>
 
-    <script src="../js/singleProduto.js"></script>
 </html>

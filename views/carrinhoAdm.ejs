@@ -55,23 +55,22 @@
 
                             <div class="row">
                                 <%produtos.forEach(produto => { %>
-                                    <div class="col-sm-3">
-                                        <img class="w-50" src="data:image/png;base64,<%=produto.imagem%>"/>
-                                    </div>
-            
-                                    <div class="col-sm-3 p-3">
-                                        <h3 class="text-dark"><%=produto.quantidade%></h3>
-                                    </div>
-            
-                                    <div class="col-sm-3 p-3">
-                                        <h3 class="text-dark">R$ <%=produto.preco.replace('.',',')%></h3>
-                                    </div>
-                                    <%if(!produto.confirmado){%>
+                                    <%if(produto.confirmado){%>
+                                        <div class="col-sm-3">
+                                            <img class="w-50" src="data:image/png;base64,<%=produto.imagem%>"/>
+                                        </div>
+                
+                                        <div class="col-sm-3 p-3">
+                                            <h3 class="text-dark"><%=produto.quantidade%></h3>
+                                        </div>
+                
+                                        <div class="col-sm-3 p-3">
+                                            <h3 class="text-dark">R$ <%=produto.preco.replace('.',',')%></h3>
+                                        </div>
+                                    
                                         <a href="/deletePedido/<%=ID%>/<%=produto.pedido_id%>" class="col-sm-3 btn btn-light p-3">
                                             <img class="w-25"R$ src="/imagens/lixeira.png"/>
                                         </a>
-                                    <%}else{%>
-                                        <div class="col-sm-3"></div>
                                     <%}%>
                                 <%})%>
                             </div>
@@ -79,7 +78,7 @@
                     </div>
                     
                     <div class="col-sm-3 mt-5">
-                        <form action="/confirmarPedidos/<%=ID%>" class="form-group p-3 mt-5" style="border: 1px solid #ccc; border-radius: 12px">
+                        <form action="/limparMesa/<%=ID%>" class="form-group p-3 mt-5" style="border: 1px solid #ccc; border-radius: 12px">
                             <fieldset>
                                 <div class="card">
                                     <div class="card-body">
@@ -87,11 +86,8 @@
                                         <span><strong>Total (10%) R$: <%=(total*1.1).toFixed(2).toString().replace('.',',')%></strong></span>
                                     </div>
                                     <div class="card-footer text-white">
-                                        <button type="submit" class="w-100 btn btn-danger">Enviar</button>
+                                        <button type="submit" class="w-100 btn btn-danger">Finalizar</button>
                                     </div>
-                                </div>
-                                <div class="text-center">
-                                    <a href="/cardapio/<%=ID%>">Adicionar mais produtos</a>
                                 </div>
                             </fieldset>
                         </form>

@@ -11,9 +11,9 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-sm-md bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-sm-md bg-primary navbar-primary">
 
-            <a class="navbar-brand" href="../index.html">Home</a> 
+            <a class="navbar-brand text-white" href="../index.html">Home</a> 
              
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -30,30 +30,28 @@
 
         <section class="container mt-5">
             <article>
-                <div class="card w-75 mx-auto p-3">
-                    <div id="mesas">
-                    
+                
+                <%mesas.forEach(mesa => {%>
+                    <div class="card w-75 mx-auto p-3 mb-3">
+                        <div class="card-title text-center"><h2><%=mesa.nome%></h2></div>
+                        <div class="card-footer text-center"><a class="btn btn-info w-75" href="/adm/mesa/<%=mesa.mesa_id%>">Visualizar</a></div>
                     </div>
-                    <div>
-                        <form id="addMesa" class="form-group">
-                            <fieldset>
-                                 <div class="row mt-3">
-                                     <div class="col-sm-9 w-100">
-                                         <input id="nomeMesa" type="text" placeholder="Nome" class="form-control">
-                                     </div>
-                                     <div class="col-sm-3">
-                                         <button onclick="addMesa()" class="btn btn-danger w-100"type="button">Adicionar</button>
-                                     </div>
-                                 </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
+                <%})%>
+
+                <form id="addMesa" class="form-group w-50 mx-auto mt-5 p-3">
+                    <fieldset>
+                         <div class="row mt-3">
+                             <div class="col-sm-9 w-100">
+                                 <input id="nomeMesa" type="text" placeholder="Nome" class="form-control">
+                             </div>
+                             <div class="col-sm-3">
+                                 <button class="btn btn-danger w-100" type="button">Adicionar</button>
+                             </div>
+                         </div>
+                    </fieldset>
+                </form>
+
             </article>
-        </section>
-
-        
+        </section>     
     </body>
-
-    <script src="../js/salao.js"></script>
 </html>

@@ -8,8 +8,20 @@ const Pedidos = connection.define('Pedidos', {
         primaryKey: true,
         autoIncrement: true
     },
-    pedido:{
-        type: Sequelize.JSON,
+    produto:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    quantidade:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    mesa:{
+        type: Sequelize.INTEGER,
+        allowNull:false
+    },
+    confirmado:{
+        type: Sequelize.BOOLEAN,
         allowNull: false
     }
 })

@@ -3,20 +3,17 @@ const bodyParser = require("body-parser")
 const app = express();
 const port = 3000;
 const connection = require('./database/database')
-const urlencoded = require('body-parser/lib/types/urlencoded')
 const Sequelize = require('sequelize')
 const multer = require('multer')
 const path = require('path')
 const fs = require('fs')
-const Blob = require('node-blob');
 
 const Usuarios = require('./database/Usuarios')
 const Mesas = require('./database/Mesas')
 const Produtos = require('./database/Produtos')
 const Categorias = require('./database/Categorias');
-const { render } = require('express/lib/response');
-const { JSON } = require('mysql/lib/protocol/constants/types');
-const { send } = require('process');
+const Pedidos = require('./database/Pedidos');
+const res = require('express/lib/response');
 
 connection
     .authenticate()
@@ -117,12 +114,17 @@ app.post("/validarCadastro/:nomeMesa", function(req, res){
 })
 
 app.get("/carrinho/:ID", function(req,res){
-    var ID = req.params.ID;
-    res.render("carrinhoCompra",{
-        mesa: ID,
-        linkCardapio:`/cardapio/${ID}`,
-        linkEnviar:`/pedido/${ID}`
-    });
+    const ID = req.params.ID;
+    (async()=>{
+        let result = await getCarrinho(ID)
+        let total = 0;
+        for(var i = 0; i < result.length; i++){
+            result[i].imagem = result[i].imagem.toString('base64')
+            total += result[i].preco * result[i].quantidade
+            result[i].preco = (result[i].preco.toFixed(2)).toString().replace('.',',')
+        }
+        res.render('carrinhoCompra',{produtos:result, ID:ID, total:total})
+    })()
 })
 
 app.get("/cardapio/:ID", function(req,res){
@@ -140,7 +142,11 @@ app.get("/cardapio/:ID", function(req,res){
 })
 
 app.get("/produto/:ID/:produto",function(req,res){
-    res.render("singleProduto",{link:`/carrinho/${req.params.ID}`})
+    const produto = req.params.produto
+    Produtos.findOne({raw:true,where: {produto_id:req.params.produto}}).then(result =>{
+        result.imagem = result.imagem.toString('base64')
+        res.render('singleProduto',{ID:req.params.ID,produto:result})
+    })
 })
 
 app.get("/adm", function(req,res){
@@ -148,7 +154,9 @@ app.get("/adm", function(req,res){
 })
 
 app.get("/adm/salao", function(req,res){
-    res.render("salao")
+    Mesas.findAll({raw:true}).then(result=>{
+        res.render('salao', {mesas:result})
+    })
 })
 
 app.get('/adm/cadastrarProduto', function(req,res){
@@ -179,10 +187,56 @@ app.post('/enviarProduto',upload.single('imagem'),function(req, res){
     })
 })
 
+app.post('/addProdutoCarrinho/:ID/:produto',function(req, res){
+    const quantidade = req.body.quantidade
+    const ID = req.params.ID
+    const produto = req.params.produto
+    Pedidos.create({
+        produto: produto,
+        quantidade: quantidade,
+        mesa: ID,
+        confirmado: false
+    }).then(()=>{
+        res.redirect(`/carrinho/${ID}`)
+    })
+    
+})
+
+app.get('/deletePedido/:ID/:pedido', function(req,res){
+    Pedidos.destroy({where: {pedido_id: req.params.pedido}}).then(()=>{
+        res.redirect(`/carrinho/${req.params.ID}`)
+    })
+})
+
+app.get('/confirmarPedidos/:ID', function(req,res){
+    Pedidos.update({confirmado: true}, {where: {mesa: req.params.ID}}).then(()=>{
+        res.redirect(`/carrinho/${req.params.ID}`)
+    })
+})
+
+app.get('/adm/mesa/:ID', function(req,res){
+    (async()=>{
+        let result = await getCarrinho(req.params.ID)
+        let total = 0;
+        for(var i = 0; i < result.length; i++){
+            result[i].imagem = result[i].imagem.toString('base64')
+            total += result[i].preco * result[i].quantidade
+            result[i].preco = (result[i].preco.toFixed(2)).toString().replace('.',',')
+        }
+        res.render('carrinhoAdm',{produtos:result, ID:req.params.ID, total:total})
+    })()
+})
+
+app.get('/limparMesa/:ID', function(req, res){
+    Pedidos.destroy({where: {mesa:req.params.ID}}).then(()=>{
+        res.redirect('/adm/salao')
+    })
+})
+
 app.listen(port, () => console.log("Servidor iniciado com sucesso !"))
 
 async function getCardapio(){
-    const [result,metadata] = await connection.query("SELECT Produtos.nome,Produtos.produto_id,Produtos.descricao,Produtos.imagem,Produtos.preco,categoria.nome_categoria FROM Produtos INNER JOIN categoria ON Produtos.categoria=categoria.categoria_id ORDER BY Produtos.produto_id ASC" )
+    const [result,metadata] = await connection.query("SELECT Produtos.nome,Produtos.produto_id,Produtos.descricao,Produtos.imagem,Produtos.preco,categoria.nome_categoria FROM Produtos INNER JOIN categoria ON Produtos.categoria=categoria.categoria_id ORDER BY Produtos.categoria ASC" )
     return result
 }
 
@@ -194,4 +248,9 @@ function ultimoArquivoModificado(dir){
     })
     dataDir.sort((a,b) => b[1] - a[1])
     return dataDir[0][0]
+}
+
+async function getCarrinho(ID){
+    const [result, metadata] = await connection.query(`SELECT Produtos.imagem,Pedidos.confirmado,Produtos.preco, Pedidos.quantidade, Pedidos.pedido_id FROM Produtos INNER JOIN Pedidos ON Pedidos.produto = Produtos.produto_id AND Pedidos.mesa=${ID}`)
+    return result
 }
